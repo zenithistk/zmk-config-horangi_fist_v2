@@ -1,0 +1,5 @@
+config SHIELD_HORANGI_FIST_LEFT
+    def_bool $(shields_list_contains,horangi_fist_left)
+
+config SHIELD_HORANGI_FIST_RIGHT
+    def_bool $(shields_list_contains,horangi_fist_right)

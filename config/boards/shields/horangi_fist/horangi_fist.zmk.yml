@@ -1,0 +1,11 @@
+file_format: "1"
+id: horangi_fist
+name: horangi_fist
+type: shield
+url: https://github.com/zenithistk/horangi_fist
+requires: [pro_micro]
+features:
+  - keys
+siblings:
+  - horangi_fist_left
+  - horangi_fist_right
