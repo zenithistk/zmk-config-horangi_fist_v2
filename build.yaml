@@ -1,8 +1,8 @@
 ---
 include:
-  - board: nice_nano_v2
+  - board: nice_nano
     shield: horangi_fist_left
-  - board: nice_nano_v2
+  - board: nice_nano
     shield: horangi_fist_right
-  - board: nice_nano_v2
+  - board: nice_nano
     shield: settings_reset
