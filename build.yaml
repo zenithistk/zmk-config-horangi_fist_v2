@@ -2,7 +2,10 @@
 include:
   - board: nice_nano//zmk
     shield: horangi_fist_left
+    artifact-name: horangi_fist_left
   - board: nice_nano//zmk
     shield: horangi_fist_right
+    artifact-name: horangi_fist_right
   - board: nice_nano//zmk
     shield: settings_reset
+    artifact-name: horangi_fist_settings_reset

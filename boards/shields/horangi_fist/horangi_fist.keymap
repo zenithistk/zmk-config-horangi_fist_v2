@@ -1,9 +1,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/pointing.h>
 
 &mt {
     tapping-term-ms = <175>;
@@ -16,22 +14,10 @@
 /
 {
 
-    leds {
-        compatible = "gpio-leds";
-        user_led: led_0 {
-            gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
-            label = "User LED";
-        };
-    };
-
-    aliases {
-        indicator-led = &user_led;
-    };
-
     behaviors {
         gresc: grave_escape {
             compatible = "zmk,behavior-mod-morph";
-            label = "GRAVE_ESCAPE";
+            display-name = "Grave/Escape";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp GRAVE>;
             mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT|MOD_RALT)>;
@@ -65,7 +51,7 @@
 
     macros {
         bt_0: bt_profile_macro_0 {
-            label = "BT_0";
+            display-name = "BT 0";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -74,16 +60,16 @@
         };
 
         bt_1: bt_profile_macro_1 {
-            label = "BT_1";
+            display-name = "BT 1";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
                 = <&out OUT_BLE>
                 , <&bt BT_SEL 1>;
         };
-        
+
         bt_2: bt_profile_macro_2 {
-            label = "BT_2";
+            display-name = "BT 2";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -91,22 +77,8 @@
                 , <&bt BT_SEL 2>;
         };
 
-        select_usb: usb_profile_macro {
-            label = "SELECT_USB";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&out OUT_USB>
-                , <&macro_wait_time 1000>
-                , <&bt BT_DISC 0>
-                , <&macro_wait_time 1000>
-                , <&bt BT_DISC 1>
-                , <&macro_wait_time 1000>
-                , <&bt BT_DISC 2>;
-        };
-
         bt_0_clr: bt_profile_macro_0_clr {
-            label = "BT_0_CLR";
+            display-name = "BT 0 clear";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -117,7 +89,7 @@
         };
 
         bt_1_clr: bt_profile_macro_1_clr {
-            label = "BT_1_CLR";
+            display-name = "BT 1 clear";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -128,7 +100,7 @@
         };
 
         bt_2_clr: bt_profile_macro_2_clr {
-            label = "BT_2_CLR";
+            display-name = "BT 2 clear";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -149,7 +121,7 @@
 
     keymap {
         compatible = "zmk,keymap";
- 
+
         default_layer {
             bindings = <
 &kp ESC     &kp F1  &kp F2    &kp F3    &kp F4      &kp F5                                &kp F6    &kp F7   &kp F8     &kp F9   &kp F10     &kp DEL
@@ -178,7 +150,7 @@
             bindings = <
 &trans       &bt_0_clr &bt_1_clr &bt_2_clr &trans      &trans                                &trans    &trans   &trans     &trans   &kp F10     &kp F11
 &out OUT_USB &bt_0     &bt_1     &bt_2     &trans      &trans                                &trans    &trans   &trans     &trans   &trans      &kp F12
-&trans       &trans    &trans    &trans    &trans      &trans   &kp C_VOL_UP       &trans    &trans    &trans   &trans     &trans   &trans      &kp INS  
+&trans       &trans    &trans    &trans    &trans      &trans   &kp C_VOL_UP       &trans    &trans    &trans   &trans     &trans   &trans      &kp INS
 &trans       &trans    &trans    &trans    &trans      &trans   &kp C_VOL_DN       &trans    &trans    &trans   &trans     &trans   &trans      &trans
 &trans       &trans    &trans    &trans    &trans      &trans   &trans             &trans    &trans    &trans   &trans     &trans   &trans      &trans
                                  &trans    &trans      &trans   &trans             &trans    &trans    &kp RCTRL &trans
@@ -198,6 +170,6 @@
             >;
 
         };
-        
+
     };
 };

@@ -2,15 +2,14 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: bluedrink9
-      url-base: https://github.com/bluedrink9
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      # main 을 그대로 추적하면 upstream 변경에 예고 없이 빌드가 깨집니다.
+      # Zephyr 4.1 기반 ZMK 릴리스가 나오기 전까지는 초록 빌드가 확인된 SHA 로 고정합니다.
+      # v0.4.x 가 나오면 revision: v0.4 로 바꾸고 .github/workflows/build.yml 의
+      # 워크플로 ref 도 같은 커밋에서 함께 올리세요.
+      revision: 641514a97db345f499dd50b0360e594270f008fe
       import: app/west.yml
-    - name: zmk-poor-mans-led-indicator
-      remote: bluedrink9
-      revision: main
   self:
     path: config
