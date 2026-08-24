@@ -25,6 +25,7 @@
         };
         ht_tp: holdtap_tappreferred {
             compatible = "zmk,behavior-hold-tap";
+            display-name = "Hold-tap (tap)";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <175>;
@@ -33,6 +34,7 @@
         };
         ht_hp: holdtap_holdpreferred {
             compatible = "zmk,behavior-hold-tap";
+            display-name = "Hold-tap (hold)";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <175>;
@@ -41,6 +43,7 @@
         };
         ht_bl: holdtap_balanced {
             compatible = "zmk,behavior-hold-tap";
+            display-name = "Hold-tap (balanced)";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <175>;
@@ -123,6 +126,7 @@
         compatible = "zmk,keymap";
 
         default_layer {
+            display-name = "Base";
             bindings = <
 &kp ESC     &kp F1  &kp F2    &kp F3    &kp F4      &kp F5                                &kp HOME  &kp END  &kp PG_UP  &kp PG_DN &kp INS    &kp DEL
 &kp GRAVE   &kp N1  &kp N2    &kp N3    &kp N4      &kp N5                                &kp N6    &kp N7   &kp N8     &kp N9   &kp N0      &kp BSPC
@@ -135,8 +139,9 @@
         };
 
         lower_layer {
+            display-name = "Lower";
             bindings = <
-&trans       &trans    &trans    &trans    &trans      &trans                                &trans    &trans   &trans     &trans   &trans      &trans
+&trans       &trans    &trans    &trans    &trans      &trans                                &bootloader &trans   &trans     &trans   &trans      &trans
 &trans       &trans    &trans    &trans    &trans      &trans                                &trans    &trans   &trans     &trans   &trans      &trans
 &trans       &trans    &trans    &trans    &trans      &trans   &trans             &trans    &trans    &trans   &kp UP     &trans   &trans      &trans
 &trans       &trans    &trans    &trans    &trans      &trans   &trans             &trans    &kp HOME  &kp LEFT &kp DOWN   &kp RIGHT &trans     &kp PG_UP
@@ -147,8 +152,9 @@
         };
 
         raise_layer {
+            display-name = "Raise";
             bindings = <
-&trans       &bt_0_clr &bt_1_clr &bt_2_clr &trans      &trans                                &kp F6    &kp F7   &kp F8     &kp F9   &kp F10     &kp F11
+&trans       &bt_0_clr &bt_1_clr &bt_2_clr &trans      &bootloader                           &kp F6    &kp F7   &kp F8     &kp F9   &kp F10     &kp F11
 &out OUT_USB &bt_0     &bt_1     &bt_2     &trans      &trans                                &trans    &trans   &trans     &trans   &trans      &kp F12
 &trans       &trans    &trans    &trans    &trans      &trans   &kp C_VOL_UP       &trans    &trans    &trans   &trans     &trans   &trans      &trans
 &trans       &trans    &trans    &trans    &trans      &trans   &kp C_VOL_DN       &trans    &trans    &trans   &trans     &trans   &trans      &trans
@@ -159,8 +165,9 @@
         };
 
         adjust_layer {
+            display-name = "Adjust";
             bindings = <
-&trans       &trans    &trans    &trans    &trans      &trans                                &trans    &trans   &trans     &trans   &trans      &trans
+&studio_unlock       &trans    &trans    &trans    &trans      &trans                                &trans    &trans   &trans     &trans   &trans      &trans
 &trans       &trans    &trans    &trans    &trans      &trans                                &trans    &trans   &trans     &trans   &trans      &trans
 &trans       &trans    &trans    &trans    &trans      &trans   &trans             &trans    &trans    &trans   &trans     &trans   &trans      &trans
 &trans       &trans    &trans    &trans    &trans      &trans   &trans             &trans    &trans    &trans   &trans     &trans   &trans      &trans
@@ -169,6 +176,22 @@
                        &trans    &trans    &trans                                                      &trans   &trans     &trans
             >;
 
+        };
+
+        /*
+         * Studio 는 devicetree 에 있는 레이어 개수까지만 쓸 수 있고 새로 만들지 못합니다.
+         * reserved 레이어는 일반 빌드에서는 완전히 무시되고, Studio 빌드에서만 나타납니다.
+         * 반드시 adjust_layer '뒤에' 두세요 - 레이어 ID 가 자식 노드 순서라서
+         * 앞에 끼우면 conditional_layers 의 <1 2> -> 3 이 어긋납니다.
+         */
+        extra1 {
+            status = "reserved";
+            display-name = "Extra 1";
+        };
+
+        extra2 {
+            status = "reserved";
+            display-name = "Extra 2";
         };
 
     };

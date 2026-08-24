@@ -1,9 +1,17 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include "horangi_fist-layouts.dtsi"
 
 / {
     chosen {
         zmk,kscan = &kscan0;
-        zmk,matrix_transform = &default_transform;
+        zmk,physical-layout = &horangi_fist_layout;
+
+        /*
+         * zmk,matrix_transform 은 여기 두지 않습니다.
+         * chosen 에 transform 이 있으면 ZMK 가 physical layout 을 통째로 무시하고
+         * ZMK Studio 가 동작하지 않습니다 (app/src/physical_layouts.c:143).
+         * transform 은 파일 끝에서 physical layout 에 연결합니다.
+         */
     };
 
     default_transform: keymap_transform_0 {
@@ -31,4 +39,9 @@
         debounce-release-ms = <20>;
     };
 
+};
+
+/* physical layout 에 matrix transform 연결 (chosen 대신) */
+&horangi_fist_layout {
+    transform = <&default_transform>;
 };

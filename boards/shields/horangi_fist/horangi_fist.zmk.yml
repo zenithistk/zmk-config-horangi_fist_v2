@@ -6,6 +6,7 @@ url: https://github.com/zenithistk/horangi_fist
 requires: [pro_micro]
 features:
   - keys
+  - studio
 siblings:
   - horangi_fist_left
   - horangi_fist_right

@@ -1,0 +1,120 @@
+/*
+ * horangi_fist 물리 레이아웃 (ZMK Studio 용)
+ *
+ * Horangi/horangi_fist_v2/horangi_fist.kicad_pcb 의 실제 스위치 좌표에서 생성했습니다.
+ * 컬럼 피치 18mm = 1u(100). x/y 는 키캡 좌상단, rx/ry 는 키 중심(절대 좌표).
+ * 회전은 centi-degree, 시계방향이 양수 (KiCad 는 반시계가 양수라 부호가 반대).
+ *
+ * 하나의 리버서블 PCB 를 양쪽에 쓰고, 왼쪽 반은 nice!nano 가 뒤집혀 실장됩니다.
+ * 그래서 왼쪽은 컬럼 순서가 반대이고(firmware col c -> PCB COL 6-c),
+ * 좌표는 도면의 x 미러, 회전 부호도 반대입니다.
+ *
+ * ★ 불변식: 이 keys 배열의 길이 = horangi_fist.dtsi 의 matrix transform map 길이
+ *          = 각 레이어의 bindings 개수 = 80.
+ *   빌드 타임에 이걸 검사하는 장치가 없습니다. 한쪽만 고치면 조용히 어긋납니다.
+ *   키를 추가/삭제하면 세 곳을 반드시 같이 고치세요.
+ *
+ * 순서는 horangi_fist.dtsi 의 map 과 동일합니다.
+ */
+
+#include <physical_layouts.dtsi>
+
+/ {
+    horangi_fist_layout: horangi_fist_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "horangi_fist";
+
+        keys  //                     w   h    x    y      rot    rx    ry
+            = <&key_physical_attrs 100 100    0  117   (-900)    50   167>   // RC(0,0 ) L SW35
+            , <&key_physical_attrs 100 100   99  101   (-900)   149   151>   // RC(0,1 ) L SW29
+            , <&key_physical_attrs 100 100  226   33   (-450)   276    83>   // RC(0,2 ) L SW23
+            , <&key_physical_attrs 100 100  360    0        0   410    50>   // RC(0,3 ) L SW17
+            , <&key_physical_attrs 100 100  460   30        0   510    80>   // RC(0,4 ) L SW11
+            , <&key_physical_attrs 100 100  560   44        0   610    94>   // RC(0,5 ) L SW5
+            , <&key_physical_attrs 100 100  982   44        0  1032    94>   // RC(0,8 ) R SW5
+            , <&key_physical_attrs 100 100 1082   30        0  1132    80>   // RC(0,9 ) R SW11
+            , <&key_physical_attrs 100 100 1182    0        0  1232    50>   // RC(0,10) R SW17
+            , <&key_physical_attrs 100 100 1316   33      450  1366    83>   // RC(0,11) R SW23
+            , <&key_physical_attrs 100 100 1443  101      900  1493   151>   // RC(0,12) R SW29
+            , <&key_physical_attrs 100 100 1542  117      900  1592   167>   // RC(0,13) R SW35
+
+        // --- matrix row 1 ---
+            , <&key_physical_attrs 100 100   18  226   (-900)    68   276>   // RC(1,0 ) L SW36
+            , <&key_physical_attrs 100 100  116  211   (-900)   166   261>   // RC(1,1 ) L SW30
+            , <&key_physical_attrs 100 100  235  144   (-450)   285   194>   // RC(1,2 ) L SW24
+            , <&key_physical_attrs 100 100  360  111        0   410   161>   // RC(1,3 ) L SW18
+            , <&key_physical_attrs 100 100  460  142        0   510   192>   // RC(1,4 ) L SW12
+            , <&key_physical_attrs 100 100  560  155        0   610   205>   // RC(1,5 ) L SW6
+            , <&key_physical_attrs 100 100  982  155        0  1032   205>   // RC(1,8 ) R SW6
+            , <&key_physical_attrs 100 100 1082  142        0  1132   192>   // RC(1,9 ) R SW12
+            , <&key_physical_attrs 100 100 1182  111        0  1232   161>   // RC(1,10) R SW18
+            , <&key_physical_attrs 100 100 1307  144      450  1357   194>   // RC(1,11) R SW24
+            , <&key_physical_attrs 100 100 1426  211      900  1476   261>   // RC(1,12) R SW30
+            , <&key_physical_attrs 100 100 1524  226      900  1574   276>   // RC(1,13) R SW36
+
+        // --- matrix row 2 ---
+            , <&key_physical_attrs 100 100   33  325   (-900)    83   375>   // RC(2,0 ) L SW37
+            , <&key_physical_attrs 100 100  132  310   (-900)   182   360>   // RC(2,1 ) L SW31
+            , <&key_physical_attrs 100 100  243  243   (-450)   293   293>   // RC(2,2 ) L SW25
+            , <&key_physical_attrs 100 100  360  211        0   410   261>   // RC(2,3 ) L SW19
+            , <&key_physical_attrs 100 100  460  242        0   510   292>   // RC(2,4 ) L SW13
+            , <&key_physical_attrs 100 100  560  255        0   610   305>   // RC(2,5 ) L SW7
+            , <&key_physical_attrs 100 100  671  261        0   721   311>   // RC(2,6 ) L SW1
+            , <&key_physical_attrs 100 100  871  261        0   921   311>   // RC(2,7 ) R SW1
+            , <&key_physical_attrs 100 100  982  255        0  1032   305>   // RC(2,8 ) R SW7
+            , <&key_physical_attrs 100 100 1082  242        0  1132   292>   // RC(2,9 ) R SW13
+            , <&key_physical_attrs 100 100 1182  211        0  1232   261>   // RC(2,10) R SW19
+            , <&key_physical_attrs 100 100 1299  243      450  1349   293>   // RC(2,11) R SW25
+            , <&key_physical_attrs 100 100 1410  310      900  1460   360>   // RC(2,12) R SW31
+            , <&key_physical_attrs 100 100 1509  325      900  1559   375>   // RC(2,13) R SW37
+
+        // --- matrix row 3 ---
+            , <&key_physical_attrs 100 100   49  424   (-900)    99   474>   // RC(3,0 ) L SW38
+            , <&key_physical_attrs 100 100  148  408   (-900)   198   458>   // RC(3,1 ) L SW32
+            , <&key_physical_attrs 100 100  250  343   (-450)   300   393>   // RC(3,2 ) L SW26
+            , <&key_physical_attrs 100 100  360  311        0   410   361>   // RC(3,3 ) L SW20
+            , <&key_physical_attrs 100 100  460  342        0   510   392>   // RC(3,4 ) L SW14
+            , <&key_physical_attrs 100 100  560  355        0   610   405>   // RC(3,5 ) L SW8
+            , <&key_physical_attrs 100 100  671  361        0   721   411>   // RC(3,6 ) L SW2
+            , <&key_physical_attrs 100 100  871  361        0   921   411>   // RC(3,7 ) R SW2
+            , <&key_physical_attrs 100 100  982  355        0  1032   405>   // RC(3,8 ) R SW8
+            , <&key_physical_attrs 100 100 1082  342        0  1132   392>   // RC(3,9 ) R SW14
+            , <&key_physical_attrs 100 100 1182  311        0  1232   361>   // RC(3,10) R SW20
+            , <&key_physical_attrs 100 100 1292  343      450  1342   393>   // RC(3,11) R SW26
+            , <&key_physical_attrs 100 100 1394  408      900  1444   458>   // RC(3,12) R SW32
+            , <&key_physical_attrs 100 100 1493  424      900  1543   474>   // RC(3,13) R SW38
+
+        // --- matrix row 4 ---
+            , <&key_physical_attrs 100 100   65  523   (-900)   115   573>   // RC(4,0 ) L SW39
+            , <&key_physical_attrs 100 100  163  507   (-900)   213   557>   // RC(4,1 ) L SW33
+            , <&key_physical_attrs 100 100  258  443   (-450)   308   493>   // RC(4,2 ) L SW27
+            , <&key_physical_attrs 100 100  360  411        0   410   461>   // RC(4,3 ) L SW21
+            , <&key_physical_attrs 100 100  460  442        0   510   492>   // RC(4,4 ) L SW15
+            , <&key_physical_attrs 100 100  560  455        0   610   505>   // RC(4,5 ) L SW9
+            , <&key_physical_attrs 100 100  671  461        0   721   511>   // RC(4,6 ) L SW3
+            , <&key_physical_attrs 100 100  871  461        0   921   511>   // RC(4,7 ) R SW3
+            , <&key_physical_attrs 100 100  982  455        0  1032   505>   // RC(4,8 ) R SW9
+            , <&key_physical_attrs 100 100 1082  442        0  1132   492>   // RC(4,9 ) R SW15
+            , <&key_physical_attrs 100 100 1182  411        0  1232   461>   // RC(4,10) R SW21
+            , <&key_physical_attrs 100 100 1284  443      450  1334   493>   // RC(4,11) R SW27
+            , <&key_physical_attrs 100 100 1379  507      900  1429   557>   // RC(4,12) R SW33
+            , <&key_physical_attrs 100 100 1477  523      900  1527   573>   // RC(4,13) R SW39
+
+        // --- matrix row 5 ---
+            , <&key_physical_attrs 100 100  360  542        0   410   592>   // RC(5,3 ) L SW22
+            , <&key_physical_attrs 100 100  460  542        0   510   592>   // RC(5,4 ) L SW16
+            , <&key_physical_attrs 100 100  577  573     2400   627   623>   // RC(5,5 ) L SW10
+            , <&key_physical_attrs 100 100  664  623     2400   714   673>   // RC(5,6 ) L SW4
+            , <&key_physical_attrs 100 100  878  623  (-2400)   928   673>   // RC(5,7 ) R SW4
+            , <&key_physical_attrs 100 100  965  573  (-2400)  1015   623>   // RC(5,8 ) R SW10
+            , <&key_physical_attrs 100 100 1082  542        0  1132   592>   // RC(5,9 ) R SW16
+            , <&key_physical_attrs 100 100 1182  542        0  1232   592>   // RC(5,10) R SW22
+            , <&key_physical_attrs 100 100  260  642        0   310   692>   // RC(5,0 ) L SW40
+            , <&key_physical_attrs 100 100  360  642        0   410   692>   // RC(5,1 ) L SW34
+            , <&key_physical_attrs 100 100  460  642        0   510   692>   // RC(5,2 ) L SW28
+            , <&key_physical_attrs 100 100 1082  642        0  1132   692>   // RC(5,11) R SW28
+            , <&key_physical_attrs 100 100 1182  642        0  1232   692>   // RC(5,12) R SW34
+            , <&key_physical_attrs 100 100 1282  642        0  1332   692>   // RC(5,13) R SW40
+            ;
+    };
+};

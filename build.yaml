@@ -1,7 +1,10 @@
 ---
 include:
+  # 왼쪽 = central. ZMK Studio 는 central 에서만 동작하므로 여기에만 붙입니다.
   - board: nice_nano//zmk
     shield: horangi_fist_left
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
     artifact-name: horangi_fist_left
   - board: nice_nano//zmk
     shield: horangi_fist_right
