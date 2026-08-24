@@ -1,22 +1,3 @@
-/*
- * horangi_fist 물리 레이아웃 (ZMK Studio 용)
- *
- * Horangi/horangi_fist_v2/horangi_fist.kicad_pcb 의 실제 스위치 좌표에서 생성했습니다.
- * 컬럼 피치 18mm = 1u(100). x/y 는 키캡 좌상단, rx/ry 는 키 중심(절대 좌표).
- * 회전은 centi-degree, 시계방향이 양수 (KiCad 는 반시계가 양수라 부호가 반대).
- *
- * 하나의 리버서블 PCB 를 양쪽에 쓰고, 왼쪽 반은 nice!nano 가 뒤집혀 실장됩니다.
- * 그래서 왼쪽은 컬럼 순서가 반대이고(firmware col c -> PCB COL 6-c),
- * 좌표는 도면의 x 미러, 회전 부호도 반대입니다.
- *
- * ★ 불변식: 이 keys 배열의 길이 = horangi_fist.dtsi 의 matrix transform map 길이
- *          = 각 레이어의 bindings 개수 = 80.
- *   빌드 타임에 이걸 검사하는 장치가 없습니다. 한쪽만 고치면 조용히 어긋납니다.
- *   키를 추가/삭제하면 세 곳을 반드시 같이 고치세요.
- *
- * 순서는 horangi_fist.dtsi 의 map 과 동일합니다.
- */
-
 #include <physical_layouts.dtsi>
 
 / {
